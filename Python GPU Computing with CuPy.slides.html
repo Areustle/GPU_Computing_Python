@@ -13473,7 +13473,7 @@ image source: Nvidia</p>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="When-are-GPUs-useful?">When are GPUs useful?<a class="anchor-link" href="#When-are-GPUs-useful?">&#182;</a></h2><p>Some problems are inherently easy to parallelize and are called <strong>embarassingly parallel</strong> problems.</p>
-<p>SAXPY is an embarassingly parallel problem. The same operation can be applied to multiple data concurrently without a lengthy sequences.</p>
+<p>SAXPY is an embarassingly parallel problem. The same operation can be applied to multiple data independently and in parallel.</p>
 <p>$
 \begin{bmatrix}
 y_0 \\
@@ -14055,18 +14055,19 @@ p is the proportion of execution time that the part benefiting from improved res
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Given N massive bodies in 3D space affected by a simple Newtonian gravitational field how will the positions, and velocities of the bodies evolve as the system progresses in time?</p>
 <p>Approach: Solve a set of non-linear second order ordinary differential equations.</p>
-<ul>
-<li>For all N bodies, compute acceleration caused by other (N-1) bodies. </li>
-<li>Use Numerical ODE solution method (Explicit Runge-Kutta Order 4) to solve for position at small future time steps This system of differential equations can be expressed as:</li>
-</ul>
-<p>$\begin{array}{c}
+<p>$\quad\quad\quad\quad\begin{array}{c}
 \dot{x_i} = v_i \\
 \dot{v_i} = a_i
-\end{array}$</p>
+\end{array}$<br>
+Where:</p>
 <ul>
 <li>$x_i$ is the 3D <strong>position</strong> vector for the $i^{th}$ body.</li>
 <li>$v_i$ is the 3D <strong>velocity</strong> vector for the $i^{th}$ body</li>
-<li>$a_i$ is the 3D <strong>acceleration</strong> vector for the $i^{th}$ body  $\frac{F_i}{m_i} = \frac{1}{m_i}\sum_{j\neq i}^{N} \frac{G m_i m_j (x_j - x_i)}{\lVert{x_j - x_i}\lVert^3}$</li>
+<li><p>$a_i$ is the 3D <strong>acceleration</strong> vector for the $i^{th}$ body  $\frac{F_i}{m_i} = \frac{1}{m_i}\sum_{j\neq i}^{N} \frac{G m_i m_j (x_j - x_i)}{\lVert{x_j - x_i}\lVert^3}$</p>
+</li>
+<li><p>For all N bodies, compute acceleration caused by other (N-1) bodies.</p>
+</li>
+<li>Use Numerical ODE solution method (Explicit Runge-Kutta Order 4) to solve for position at small future time steps.</li>
 </ul>
 
 </div>
